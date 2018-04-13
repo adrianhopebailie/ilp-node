@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <artifactId>ilp-node</artifactId>
+    <groupId>com.hopebalie</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.hopebalie</groupId>
-  <artifactId>ilp-node</artifactId>
-  <packaging>pom</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <modules>
-    <module>camel-ildcp</module>
-    <module>camel-ilp</module>
-    <module>camel-btp</module>
-    <module>btp-core</module>
-    <module>btp-core-codecs</module>
-    <module>camel-ilp-node</module>
-    <module>ildcp-core</module>
-    <module>ildcp-core-codecs</module>
-  </modules>
+  <artifactId>camel-ilp</artifactId>
+  <packaging>jar</packaging>
 
-  <name>ILP Node Implementation</name>
+  <name>Interledger Protocol Camel Libs</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -32,20 +25,10 @@
       <dependency>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-parent</artifactId>
-        <version>2.21.0</version>
+        <version>2.20.2</version>
         <scope>import</scope>
         <type>pom</type>
       </dependency>
-
-      <!-- Interledger BOM -->
-      <dependency>
-        <groupId>org.interledger</groupId>
-        <artifactId>quilt-parent</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
-        <scope>import</scope>
-        <type>pom</type>
-      </dependency>
-
     </dependencies>
   </dependencyManagement>
 
@@ -54,43 +37,6 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-core</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-stream</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-websocket</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.interledger</groupId>
-      <artifactId>ilp-core</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.interledger</groupId>
-      <artifactId>ilp-core-codecs</artifactId>
-      <version>0.1.0-SNAPSHOT</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.interledger</groupId>
-      <artifactId>ilp-annotations</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.interledger</groupId>
-      <artifactId>codec-framework</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.immutables</groupId>
-      <artifactId>value</artifactId>
-      <version>2.5.6</version>
     </dependency>
 
     <!-- logging -->
@@ -115,11 +61,6 @@
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-test</artifactId>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
-      <version>1</version>
     </dependency>
   </dependencies>
 
@@ -151,33 +92,12 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.6.0</version>
         <configuration>
-          <mainClass>Server</mainClass>
+          <mainClass>com.hopebalie.camel.ilp.MainApp</mainClass>
           <includePluginDependencies>false</includePluginDependencies>
         </configuration>
       </plugin>
 
     </plugins>
   </build>
-
-  <profiles>
-    <profile>
-      <id>java9</id>
-      <activation>
-        <jdk>9</jdk>
-      </activation>
-      <dependencies>
-        <dependency>
-          <groupId>javax.xml.bind</groupId>
-          <artifactId>jaxb-api</artifactId>
-          <version>2.2.8</version>
-        </dependency>
-        <dependency>
-          <groupId>javax.activation</groupId>
-          <artifactId>activation</artifactId>
-          <version>1.1.1</version>
-        </dependency>
-      </dependencies>
-    </profile>
-  </profiles>
 
 </project>
